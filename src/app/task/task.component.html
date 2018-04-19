@@ -1,0 +1,44 @@
+<div class="page-header">
+	<h1>{{ room?.title }}</h1>
+	<p class="description">{{ room?.description }}</p>
+	<span [routerLink]="['/room']">Retour</span>
+	<span class="add-room fa-layers fa-fw" (click)="addTask()">
+		<i class="fas fa-circle" style="color:Tomato"></i>
+		<i class="fa-inverse fal fa-plus" data-fa-transform="shrink-6"></i>
+	</span>
+</div>
+
+<label class="searchbar">
+	<i class="fal fa-search fa-fw"></i> <input type="text" [(ngModel)]="taskFilter" placeholder="Search Task or Point" />
+</label>
+
+<div class="list-tasks">
+	<div id="{{task.id}}" class="task" *ngFor="let task of tasks | filter : taskFilter">
+		<div class="content">
+			<div (click)="deleteTask(task)">Supprimer</div>
+			<h2 class="title">{{ task.title }}</h2>
+
+			<div class="list-point publish">
+				<app-point
+				 *ngFor="let point of task.list_point"
+				 id="{{point._id}}"
+				 class="point {{point.status}}"
+				 [hidden]="point.status != 'publish'"
+				 [point]="point"></app-point>
+
+				<li class="point new" (click)="addPoint(task)"><i class="fal fa-plus"></i> Write what you want</li>
+			</div>
+
+			<div class="completed"><i class="fas fa-plus-circle"></i> Points archivés</div>
+
+			<div class="list-point archive">
+				<app-point
+				 *ngFor="let point of task.list_point"
+				 class="point {{point.status}}"
+				 [hidden]="point.status != 'archive'"
+				 [point]="point"></app-point>
+			</div>
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,13 @@
+OK pour tout type de suppression
+
+
+A FAIRE
+---------
+
+- Afficher stat room
+
+- Design de l'application
+- Actions javascript
+- Pouvoir modifier les �l�ments
+
+- Faire la connexion en direct

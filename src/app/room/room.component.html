@@ -1,0 +1,25 @@
+<div class="page-header">
+	<h1>My Rooms</h1>
+	<span class="add-room fa-layers fa-fw" (click)="addRoom()">
+		<i class="fas fa-circle" style="color:Tomato"></i>
+		<i class="fa-inverse fal fa-plus" data-fa-transform="shrink-6"></i>
+	</span>
+</div>
+
+<label class="searchbar">
+	<i class="fal fa-search fa-fw"></i> <input [(ngModel)]="roomFilter" placeholder="Search a Room">
+</label>
+
+<div class="list-rooms">
+	<div class="room" [routerLink]="['/room', room.id]" *ngFor="let room of rooms | filter : roomFilter">
+		<div class="content">
+			<span (click)="deleteRoom(room)">Supprimer</span>
+
+			<h2 class="title">{{ room.title }}</h2>
+			<p class="description">{{ room.description }}</p>
+			<ul class="indications">
+				<li class="task-number"><i class="far fa-tasks fa-fw"></i> <span>{{ room.task_count }}</span></li>
+			</ul>
+		</div>
+	</div>
+</div>
